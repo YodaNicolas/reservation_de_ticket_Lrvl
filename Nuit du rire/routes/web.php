@@ -20,6 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ROUTES POUR LES ACTIONS DES ADMIN
+Route::middleware('[auth]', 'role:admin')->group(function () {
+
+
+
+});
+
+
 Route::get('clientregister', [ClientController::class, 'ClientRegister'] );
 
 Route::get('connection', [CentralController::class, 'connection'])->name('connection');
