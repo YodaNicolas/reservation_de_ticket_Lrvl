@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CentralController;
 
-
+use App\Http\Controllers\inscriptionController;
 use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +31,11 @@ Route::middleware('[auth]', 'role:admin')->group(function () {
 Route::get('clientregister', [ClientController::class, 'ClientRegister'] );
 
 Route::get('connection', [CentralController::class, 'connection'])->name('connection');
+
+Route::get('/', function () {
+    return view('welcome');
+})->name("accueil");
+route::get("/inscription",[inscriptionController::class, 'index'])->name("inscription");
+
+route::get("/mamgerlist",[inscriptionController::class, 'vuelistmanage'])->name("mamgerlist");
+?>
