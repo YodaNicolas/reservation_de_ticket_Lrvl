@@ -10,7 +10,8 @@ class ClientController extends Controller
 {
    public function ClientRegister(){
 
-        return view('vueclient.enregisrtrement');
+  return view('vueadmin.formenregisrtrement');
+     
    }
 
 

@@ -28,6 +28,9 @@ Route::middleware('[auth]', 'role:admin')->group(function () {
 });
 
 
-Route::get('clientregister', [ClientController::class, 'ClientRegister'] );
+Route::get('form', [ClientController::class, 'ClientRegister'] );
+
+Route::post('envoiEnBase', [CentralController::class, 'traitement_register'])->name('envoiEnBase');
 
 Route::get('connection', [CentralController::class, 'connection'])->name('connection');
+

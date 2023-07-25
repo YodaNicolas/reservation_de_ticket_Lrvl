@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class CentralController extends Controller
 
     public function form_register(Request $request)
     {
-        if ($request->session()->get('client')) {
+        if ($request->session()->get('user')) {
 
             return redirect('/espace-membre')->with('status', 'veuillez vous deconnecter avant de vous reinscrire');
         }
@@ -29,7 +30,7 @@ class CentralController extends Controller
     }
     public function form_login(Request $request)
     {
-        if ($request->session()->get('client')) {
+        if ($request->session()->get('user')) {
 
             return redirect('/espace-membre')->with('status', 'veuillez vous deconnecter avant de vous reconnecter');
         }
@@ -38,20 +39,26 @@ class CentralController extends Controller
     public function traitement_register(Request $request)
     {
         $request->validate([
-            'email' => 'email|required|unique:clients',
-            'password' => 'required|min:8',
             'nom' => 'required',
             'prenom' => 'required',
+            'email' => 'email|required|unique:users',
+            'password1' => 'required|min:8',
+            'password2' => 'required|min:8',
         ]);
 
-        $client = new utilisateur();
-        $client->email = $request->input('email');
-        $client->password =  bcrypt($request->input('password'));
+        $client = new User();
         $client->nom = $request->input('nom');
         $client->prenom = $request->input('prenom');
+        $client->email = $request->input('email');
+        if ($request->input('password1') != $request->input('password2')) {
+            return 'mot de passe pas conforme';
+            // return redirect('/clientregister')->with('status', 'Mot de passe non conforme.');
+        }
+        
+        $client->password =  bcrypt($request->input('password1'));
         $client->save();
-
-        return redirect('/register')->with('status', 'votre compte a bien été crée.');
+       
+        return ('enregistré avec succes.');
     }
     public function traitement_login(Request $request)
     {
@@ -59,7 +66,7 @@ class CentralController extends Controller
             'email' => 'email|required',
             'password' => 'required|min:8',
         ]);
-        $client = utilisateur::where('email', $request->input('email'))->first();
+        $client = User::where('email', $request->input('email'))->first();
         if ($client) {
             if (Hash::check($request->input('password'), $client->password)) {
                 $request->session()->put('client', $client);
