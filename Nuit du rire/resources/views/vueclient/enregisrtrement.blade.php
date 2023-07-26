@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Client register</title>
+    <title></title>
     <link rel="stylesheet" href="{{asset('css/client/register.css')}}" />
 </head>
 
@@ -34,7 +34,7 @@
                 <input type="password" placeholder="Enter Password" name="psw" required>
 
                 <div class="clearfix">
-                    <button type="submit" class="btn">Sign Up</button>
+                    <button type="submit" class="btn">connecter</button>
                 </div>
             </div>
         </form>

@@ -17,7 +17,7 @@ use App\Http\Controllers\ClientController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
 });
 
 // ROUTES POUR LES ACTIONS DES ADMIN
@@ -28,14 +28,17 @@ Route::middleware('[auth]', 'role:admin')->group(function () {
 });
 
 
-Route::get('clientregister', [ClientController::class, 'ClientRegister'] );
+Route::get('inscription', [ClientController::class, 'inscription'] )->name('inscription');
+
+Route::post('envoiEnBase', [CentralController::class, 'traitement_register'])->name('envoiEnBase');
 
 Route::get('connection', [CentralController::class, 'connection'])->name('connection');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("accueil");
-route::get("/inscription",[inscriptionController::class, 'index'])->name("inscription");
 
-route::get("/mamgerlist",[inscriptionController::class, 'vuelistmanage'])->name("mamgerlist");
-?>
+Route::get("/accueil",[inscriptionController::class, 'accueil'])->name("accueil");
+
+Route::get("/liste_managers",[inscriptionController::class, 'liste_managers'])->name("liste_managers");
+
+Route::get("/liste_inscriptions",[inscriptionController::class, 'liste_inscriptions'])->name("liste_inscriptions");
+
+

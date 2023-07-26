@@ -6,15 +6,19 @@ use Illuminate\Http\Request;
 
 class inscriptionController extends Controller
 {
-    public function index(){
+    public function liste_inscriptions(){
         return view('liste_inscriptions');
         
     }
 
 
-    public function vuelistmanage(){
+    public function liste_managers (){
    
         return view('liste_des_managers');
+    }
+    public function accueil(){
+   
+        return view('accueil');
     }
 }
 
