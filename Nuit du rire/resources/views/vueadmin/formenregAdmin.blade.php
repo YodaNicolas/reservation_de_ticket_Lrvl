@@ -13,11 +13,11 @@
 
     <body>
 
-        <form method="post" action="{{url('envoiEnBase')}}">
+        <form method="post" action="{{url('envoiEnBaseAdmin')}}">
             @csrf
             <div class="container">
                 <h1>Sign Up</h1>
-                <p>Renseignez vos infos pour ceer un compte.</p>
+                <p>Renseignez vos infos pour ceer un compte administrateur.</p>
 
                 <label for="email"><b>Nom</b></label>
                 <input type="text" name="nom" placeholder="Entrez votre nom" required>

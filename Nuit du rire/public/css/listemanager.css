@@ -1,0 +1,32 @@
+ .bd-placeholder-img {
+     font-size: 1.125rem;
+     text-anchor: middle;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     user-select: none;
+ }
+
+ .contentAjout {
+     display: flex;
+     width: 100%;
+     align-items: center;
+     justify-content: space-between;
+     margin-bottom: 8px;
+ }
+
+ .positionActionBouton {
+     display: flex;
+     gap: 8px;
+     align-items: flex-end;
+     justify-content: end;
+ }
+
+ .actpo {
+     margin-right: 80px;
+ }
+
+ @media (min-width: 768px) {
+     .bd-placeholder-img-lg {
+         font-size: 3.5rem;
+     }
+ }

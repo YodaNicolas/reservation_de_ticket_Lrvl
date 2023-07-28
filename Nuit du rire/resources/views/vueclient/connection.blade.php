@@ -12,15 +12,16 @@
         <div class="login-container">
             <div class="circle circle-one"></div>
             <div class="form-container">
-                <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+                <!-- <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" /> -->
                 <h1 class="opacity">LOGIN</h1>
-                <form>
-                    <input type="text" placeholder="USERNAME" />
-                    <input type="password" placeholder="PASSWORD" />
-                    <button class="opacity">SUBMIT</button>
+                <form method="post" action="{{route('connectionTraitement')}}">
+                    @csrf
+                    <input type="text" name="email" placeholder="Email" />
+                    <input type="password" name="password" placeholder="Mot de passe" />
+                    <button type="submit" class="opacity">SUBMIT</button>
                 </form>
                 <div class="register-forget opacity">
-                    <a href="">REGISTER</a>
+                    <a href="{{route('inscriptionClient')}}">REGISTER</a>
                     <a href="">FORGOT PASSWORD</a>
                 </div>
             </div>
