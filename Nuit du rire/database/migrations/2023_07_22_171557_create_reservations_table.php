@@ -16,9 +16,12 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('utilisateur_id');
-            
-            
+            // $table->unsignedBigInteger('utilisateur_id');
+            // $table->foreign('utilisateur_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained();
+            $table->string('etat_reservation')->default('Non validé');
+            $table->integer('nombre_place')->default(1);
+
             $table->timestamps();
         });
     }

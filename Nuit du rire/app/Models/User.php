@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\reservation;
 use App\Models\role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,7 +19,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
+        'numero',
         'email',
         'password',
     ];
@@ -45,5 +48,9 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(role::class);
+    }
+    public function reservations()
+    {
+        return $this->hasMany(reservation::class,'user_id');
     }
 }
