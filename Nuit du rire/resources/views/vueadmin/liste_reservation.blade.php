@@ -46,22 +46,23 @@
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="contentAjout">
-            <h2 class="border-bottom pb-2 mb-0">Liste des managers</h2>
-            <a href="{{ route('AjoutManager')}}" class="ml-4 text-sm text-gray-700 underline"><button class="btn btn-primary"> Ajouter un manager</button></a>
+            <h2 class="border-bottom pb-2 mb-0">Liste des reservation</h2>
+            <!-- <a href="{{ route('AjoutManager')}}" class="ml-4 text-sm text-gray-700 underline"><button class="btn btn-primary"> Ajouter un manager</button></a> -->
 
-        </div>
+        </div> @if (Session:: has('status'))
         <h3>
-            @if (Session:: has('status'))
+
             {{ Session::get('status') }}
-            @endif
-        </h3>
+
+        </h3> @endif
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th scope="col">N°</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prenom</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Nom du client</th>
+                    <th scope="col">Numero </th>
+                    <th scope="col">Date de reservation</th>
+                    <th scope="col">Etat</th>
                     <th scope="col" class="positionActionBouton">
                         <div class="actpo">Action</div>
                     </th>
@@ -69,17 +70,27 @@
             </thead>
 
             <tbody>
-                @foreach ( $manags as $manag )
+
+                @if (Session:: has('statut'))
+                <tr>
+                    <h2 style="color: red;">
+                        {{ Session::get('statut') }}
+                    </h2>
+                </tr>
+                @endif
+
+                @foreach ( $reservs as $reserv )
                 <tr>
                     <th scope="row">1</th>
-                    <td>{{ $manag->nom }}</td>
-                    <td>{{ $manag->prenom }}</td>
-                    <td>{{ $manag->email }}</td>
+                    <td>{{ $reserv->user->nom}}</td>
+                    <td>{{ $reserv->user->numero}}</td>
+                    <td>{{ $reserv->created_at }}</td>
+                    <td>{{ $reserv->etat_reservation }}</td>
 
                     <td>
                         <div class="positionActionBouton">
-                            <a class="btn btn-success" href="{{url('edit/'.$manag->id)}}">Modifier</a>
-                            <a href="{{url('deletemana/'.$manag->id)}}" class="btn btn-danger" onclick="if(confirm('Voulez-vous supprimer cet manager?')){document.getElementById.submit()}">Supprimer</a>
+                            <a class="btn btn-success" href="{{url('valid/'.$reserv->id)}}">Modifier</a>
+                            <a href="{{url('delete/'.$reserv->id)}}" class="btn btn-danger" onclick="if(confirm('Voulez-vous supprimer cette reservation?')){document.getElementById.submit()}">Supprimer</a>
                         </div>
                     </td>
                 </tr>

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 class inscriptionController extends Controller
 {
     public function inscriptionListe(){
-
         $attentes =  DB::select('select * from users where etat = 0');
         return view('vueadmin.liste_inscriptions', compact('attentes'));
 
